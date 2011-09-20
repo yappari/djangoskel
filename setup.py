@@ -20,7 +20,7 @@ def whole_tree(prefix, path):
 
 setup(
     name='DjangoSkel',
-    version='0.1.1',
+    version='0.1.2',
     author='Radek Czajka',
     author_email='radek.czajka@gmail.com',
     packages=['djangoskel'],
@@ -31,11 +31,11 @@ setup(
     url='https://github.com/yappari/djangoskel',
     license=open('LICENSE').read(),
     description="Django project skeleton",
-    long_description=open('README.txt').read(),
+    long_description=open('README.rst').read(),
     install_requires = [
-        'skeleton',
+        'skeleton==0.6-ypr',
     ],
     dependency_links = [
-       'http://github.com/yappari/skeleton/tarball/master#egg=skeleton-0.6',
+       'http://github.com/yappari/skeleton/tarball/master#egg=skeleton-0.6-ypr',
     ],
 )
