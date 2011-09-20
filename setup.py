@@ -20,7 +20,7 @@ def whole_tree(prefix, path):
 
 setup(
     name='DjangoSkel',
-    version='0.1',
+    version='0.1.1',
     author='Radek Czajka',
     author_email='radek.czajka@gmail.com',
     packages=['djangoskel'],
