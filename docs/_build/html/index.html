@@ -1,0 +1,190 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>DjangoSkel – a Django Project Skeleton &mdash; DjangoSkel v0.1 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="DjangoSkel v0.1 documentation" href="#" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li><a href="#">DjangoSkel v0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="djangoskel-a-django-project-skeleton">
+<h1>DjangoSkel &#8211; a Django Project Skeleton<a class="headerlink" href="#djangoskel-a-django-project-skeleton" title="Permalink to this headline">¶</a></h1>
+<p>This package provides a Django project skeleton. It creates a new Django
+project, set and ready for deployment.
+Basic usage:</p>
+<div class="highlight-python"><pre>djangoskel &lt;path/to/newproject&gt; --project &lt;project_name&gt; --app &lt;app_name&gt;</pre>
+</div>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>DjangoSkel uses <tt class="docutils literal"><span class="pre">distribute</span></tt> for packaging. Just run:</p>
+<div class="highlight-python"><pre>python setup.py install</pre>
+</div>
+</div>
+<div class="section" id="features">
+<h2>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Creates a Django 1.3.* project, with apps decoupled to a separate <tt class="docutils literal"><span class="pre">apps</span></tt>
+directory.</li>
+<li>Adds <a class="reference external" href="http://south.aeracode.org/">South</a>.</li>
+<li>Puts dependencies in a <tt class="docutils literal"><span class="pre">requirements.txt</span></tt> file for
+<a class="reference external" href="http://www.pip-installer.org/">pip</a>.</li>
+<li>Creates WSGI and VHost templates.</li>
+<li>Provides a <a class="reference external" href="http://fabfile.org">Fabric</a> deployment script.
+It creates and uploads a tarball from the current git branch, so it
+only works if the project is managed with <a class="reference external" href="http://git-scm.com/">git</a>.</li>
+</ul>
+</div>
+<div class="section" id="quick-start">
+<h2>Quick start<a class="headerlink" href="#quick-start" title="Permalink to this headline">¶</a></h2>
+<p>After running:</p>
+<div class="highlight-python"><pre>djangoskel &lt;path/to/newproject&gt; --project=&lt;project_name&gt; --app=&lt;app_name&gt;</pre>
+</div>
+<p>there will be a new django project under <tt class="docutils literal"><span class="pre">&lt;path/to/newproject&gt;</span></tt>
+named <tt class="docutils literal"><span class="pre">&lt;project_name&gt;</span></tt> with one application called <tt class="docutils literal"><span class="pre">&lt;app_name&gt;</span></tt>.
+You can give deployment a test ride, by running from the project dir:</p>
+<div class="highlight-python"><pre>git init; git add .; git commit -m 'initial commit'
+fab localhost setup</pre>
+</div>
+<p>If everything goes well, a <tt class="docutils literal"><span class="pre">test-deployment</span></tt> directory should appear, with
+a <tt class="docutils literal"><span class="pre">.vhost</span></tt> file ready for feeding to Apache.</p>
+<p>For each new server you&#8217;ll need to:</p>
+<ul class="simple">
+<li>add the server configuration to <tt class="docutils literal"><span class="pre">fabfile.py</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">fab</span> <span class="pre">&lt;server_name&gt;</span> <span class="pre">setup</span></tt> for first deployment</li>
+<li>fill out <tt class="docutils literal"><span class="pre">localsettings.py</span></tt> on the server (always re-deploy to apply)</li>
+<li>symlink the <tt class="docutils literal"><span class="pre">.vhost</span></tt> file to Apache&#8217;s <tt class="docutils literal"><span class="pre">sites-enabled</span></tt> (or
+copy to <tt class="docutils literal"><span class="pre">sites-available</span></tt>, edit and symlink, as the default file
+<cite>will</cite> be overwritten on the next deployment) and reload</li>
+<li>re-deploy with <tt class="docutils literal"><span class="pre">fab</span> <span class="pre">&lt;server_name&gt;</span> <span class="pre">deploy</span></tt></li>
+</ul>
+</div>
+<div class="section" id="dependencies">
+<h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/yappari/skeleton">skeleton</a></li>
+<li><a class="reference external" href="https://github.com/yappari/git-archive-all.sh">git-archive-all.sh</a>
+(included)</li>
+</ul>
+<div class="section" id="server-side-dependencies">
+<h3>Server-side dependencies<a class="headerlink" href="#server-side-dependencies" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>SSH access</li>
+<li><a class="reference external" href="http://virtualenv.org">virtualenv</a> with bundled pip</li>
+<li>Apache with <a class="reference external" href="http://code.google.com/p/modwsgi/">mod_wsgi</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="authors">
+<h2>Authors<a class="headerlink" href="#authors" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Radek Czajka &lt;<a class="reference external" href="mailto:radek&#46;czajka&#37;&#52;&#48;gmail&#46;com">radek<span>&#46;</span>czajka<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</li>
+</ul>
+<div class="toctree-wrapper compound">
+<ul class="simple">
+</ul>
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><em>Index</em></a></li>
+<li><a class="reference internal" href="py-modindex.html"><em>Module Index</em></a></li>
+<li><a class="reference internal" href="search.html"><em>Search Page</em></a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">DjangoSkel &#8211; a Django Project Skeleton</a><ul>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#features">Features</a></li>
+<li><a class="reference internal" href="#quick-start">Quick start</a></li>
+<li><a class="reference internal" href="#dependencies">Dependencies</a><ul>
+<li><a class="reference internal" href="#server-side-dependencies">Server-side dependencies</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#authors">Authors</a><ul>
+</ul>
+</li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+</li>
+</ul>
+
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/index.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li><a href="#">DjangoSkel v0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2011, Radek Czajka.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.1.
+    </div>
+  </body>
+</html>

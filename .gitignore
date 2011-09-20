@@ -1,0 +1,11 @@
+# Python garbage
+*.pyc
+.coverage
+pip-log.txt
+nosetests.xml
+
+# Mac OS X garbage
+.DS_Store
+
+# Windows garbage
+thumbs.db

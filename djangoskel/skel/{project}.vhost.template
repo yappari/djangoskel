@@ -1,0 +1,31 @@
+<VirtualHost *:80>
+    ServerName "%(server_name)s"
+    ServerAdmin "%(server_admin)s"
+
+    WSGIDaemonProcess %(project_name)s user=%(user)s group=%(user)s processes=2 threads=15 display-name=%%{GROUP} python-path=%(site_packages)s
+    WSGIProcessGroup %(project_name)s
+
+    WSGIScriptAlias / %(path)s/%(project_name)s.wsgi
+    <Directory %(path)s>
+        Order allow,deny
+        allow from all
+    </Directory>
+
+    Alias /media %(path)s/media
+    <Directory %(path)s/media>
+        Options Indexes
+        Order allow,deny
+        Allow from all
+    </Directory>
+        
+    Alias /static %(path)s/releases/current/%(project_name)s/static
+    <Directory %(path)s/releases/current/%(project_name)s/static>
+        Options Indexes
+        Order allow,deny
+        Allow from all
+    </Directory>
+
+    LogLevel warn
+    ErrorLog /var/log/apache2/%(error_log)s
+    CustomLog /var/log/apache2/%(access_log)s combined
+</VirtualHost>
